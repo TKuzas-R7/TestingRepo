@@ -1,0 +1,31 @@
+name: TierOneCoverage
+
+on: workflow_dispatch
+
+jobs:
+  check-coverage:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Make Temp Dir for Artifacts
+        run: |
+          pwd
+          mkdir coverageDir 
+          touch coverageDir/coverage.csv
+
+      - name: Run Coverage on Tier One Plugins
+        run: |
+          pwd
+          echo "THIS IS A TEST" >> coverageDir/coverage.csv
+          cat coverageDir/coverage.csv
+
+
+      - name: Upload Coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: coverageDir
