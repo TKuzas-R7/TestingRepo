@@ -20,7 +20,10 @@ jobs:
       - name: Run Coverage on Tier One Plugins
         run: |
           pwd
-          echo "THIS IS A TEST" >> coverageDir/coverage.csv
+          for plugin in ${{ vars.TIER_ONE_PLUGINS_ICON }}
+          do
+            echo $plugin >> coverageDir/coverage.csv
+          done
           cat coverageDir/coverage.csv
 
 
